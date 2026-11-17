@@ -73,7 +73,7 @@ function doPost(e) {
       txt_(clean_(d.look, 40)), txt_(clean_(d.payment, 40)), txt_(clean_(d.payer, 80)),
       txt_(clean_(d.diet, 120)), txt_(clean_(d.comment, 500)), receipt, heads, heads * PRICE, false, ''
     ];
-    var r = sh.getLastRow() + 1;
+    var r = nextRow_(sh);
     sh.getRange(r, 1, 1, row.length).setValues([row]);
     sh.getRange(r, COL.paid).insertCheckboxes();
     return json_({ ok: true });
@@ -98,6 +98,18 @@ function doGet() {
     });
   }
   return json_(res);
+}
+
+// Первая пустая строка по колонке «Имя». getLastRow() не подходит:
+// заранее поставленные галочки считаются заполненными ячейками.
+function nextRow_(sh) {
+  var last = sh.getLastRow();
+  if (last < 2) return 2;
+  var names = sh.getRange(2, 2, last - 1, 1).getValues();
+  for (var i = names.length - 1; i >= 0; i--) {
+    if (String(names[i][0]).trim() !== '') return i + 3;
+  }
+  return 2;
 }
 
 function json_(o) {
