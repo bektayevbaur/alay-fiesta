@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Бюджет Alay Fiesta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700&display=swap">
+<style>
+/* Layout: лист до 1120px; блок прогноза — ввод слева, результат справа; ниже — регистрация (форма + список с переключателем оплаты) */
+:root{
+  --bg:#f5f6fa; --surface:#ffffff; --surface-2:#eef1f8; --ink:#141a2e; --muted:#5a6178; --line:#dfe3ee;
+  --cobalt:#1d4cc0; --cobalt-soft:#e6ecfb; --saffron:#d98a00; --saffron-soft:#fcf0d6;
+  --rojo:#c8321f; --rojo-soft:#fbe5e1; --ok:#16804a; --ok-soft:#dff3e7;
+  --f-display:"Unbounded", "Arial Black", system-ui, sans-serif;
+  --f-body:"Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0e1120; --surface:#161a2d; --surface-2:#1d2238; --ink:#eceff8; --muted:#9aa1b9; --line:#2a304a;
+  --cobalt:#7c9dff; --cobalt-soft:#1e2847; --saffron:#f3b443; --saffron-soft:#3a2e14;
+  --rojo:#ff7462; --rojo-soft:#3d1d1a; --ok:#4cc98a; --ok-soft:#163324; color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#0e1120; --surface:#161a2d; --surface-2:#1d2238; --ink:#eceff8; --muted:#9aa1b9; --line:#2a304a;
+  --cobalt:#7c9dff; --cobalt-soft:#1e2847; --saffron:#f3b443; --saffron-soft:#3a2e14;
+  --rojo:#ff7462; --rojo-soft:#3d1d1a; --ok:#4cc98a; --ok-soft:#163324; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.5}
+.page{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:24px 72px;display:grid;gap:44px}
+h1,h2,h3{font-family:var(--f-display);font-weight:700;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(26px,4.4vw,40px);letter-spacing:-.01em}
+h2{font-size:clamp(20px,2.8vw,26px)}
+h3{font-size:15px;font-weight:500}
+p{margin:0}
+.eyebrow{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.neg{color:var(--rojo)} .pos{color:var(--ok)} .mut{color:var(--muted)}
+
+/* header */
+header{display:grid;gap:14px}
+.flag{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--rojo) 0 25%,var(--saffron) 25% 75%,var(--rojo) 75%);max-width:120px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13.5px;font-weight:600}
+.lede{max-width:68ch;color:var(--muted)}
+
+/* verdict */
+.verdict{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.v{padding:18px 20px;display:grid;gap:4px;align-content:start;border-right:1px solid var(--line)}
+.v:last-child{border-right:0}
+.big{font-family:var(--f-display);font-size:clamp(26px,3.6vw,36px);font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums}
+.v small{color:var(--muted);font-size:13.5px}
+.v.alert{background:var(--rojo-soft)} .v.good{background:var(--ok-soft)}
+.verdict-note{grid-column:1/-1;border-top:1px solid var(--line);padding:12px 20px;font-weight:600;background:var(--surface-2)}
+
+section{display:grid;gap:18px}
+.sec-head{display:grid;gap:6px}
+.grid2{display:grid;grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:20px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:16px;min-width:0}
+fieldset{border:0;margin:0;padding:0;display:grid;gap:10px}
+legend{padding:0;margin-bottom:8px}
+.field{display:grid;grid-template-columns:minmax(0,1fr) 116px;align-items:center;gap:10px;font-size:14px}
+.field label{color:var(--ink)}
+.field .hint{display:block;color:var(--muted);font-size:12.5px;line-height:1.35}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:100%;min-width:0}
+input[type=number]{text-align:right;font-variant-numeric:tabular-nums}
+input:focus-visible,select:focus-visible,button:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--cobalt);outline-offset:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg label{display:block;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:13px;cursor:pointer;background:var(--bg);line-height:1.3}
+.seg input{position:absolute;opacity:0;width:1px;height:1px}
+.seg input:checked + span{color:var(--cobalt);font-weight:700}
+.seg label:has(input:checked){border-color:var(--cobalt);background:var(--cobalt-soft)}
+.seg label:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:2px}
+.divider{border:0;border-top:1px solid var(--line);margin:2px 0}
+.save-state{font-size:12.5px;color:var(--muted)}
+
+/* chart */
+.chart-wrap{overflow-x:auto}
+.chart{display:block;width:100%;min-width:540px;height:auto}
+.chart text{fill:var(--muted);font-family:var(--f-body);font-size:12px}
+.chart .grid{stroke:var(--line);stroke-width:1}
+.chart .zero{stroke:var(--ink);stroke-width:1.2;opacity:.55}
+.chart .line{fill:none;stroke:var(--cobalt);stroke-width:2.5}
+.chart .a-pos{fill:var(--ok);opacity:.16} .chart .a-neg{fill:var(--rojo);opacity:.14}
+.chart .zone1{fill:var(--saffron);opacity:.12} .chart .zone2{fill:var(--muted);opacity:.14}
+.chart .cap{stroke:var(--saffron);stroke-dasharray:4 4;stroke-width:1.4}
+.chart .cap2{stroke:var(--muted);stroke-dasharray:4 4;stroke-width:1.4}
+.chart .be{fill:var(--cobalt);stroke:var(--surface);stroke-width:2}
+.chart .likely{fill:var(--saffron);stroke:var(--surface);stroke-width:2}
+.chart .live{fill:var(--ok);stroke:var(--surface);stroke-width:2}
+.chart .lbl{fill:var(--ink);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:var(--muted)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* table */
+.tbl-wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}
+th,td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+th:first-child,td:first-child{text-align:left}
+thead th{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:700}
+td b{display:block;font-weight:700}
+td span{font-size:13px}
+tr.base td{background:var(--cobalt-soft)}
+.capped{font-size:11.5px;color:var(--saffron);display:block}
+
+.whatif{display:grid;gap:10px}
+.whatif-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+input[type=range]{padding:0;border:0;background:none;accent-color:var(--cobalt)}
+.rows{display:grid;gap:0}
+.rows div{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-bottom:1px dashed var(--line);font-variant-numeric:tabular-nums}
+.rows div:last-child{border-bottom:0;font-weight:800}
+
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:0 18px}
+summary{cursor:pointer;padding:14px 0;font-weight:700;list-style-position:outside}
+details[open] summary{border-bottom:1px solid var(--line);margin-bottom:12px}
+details ul,details ol{margin:0 0 16px;padding-left:20px;display:grid;gap:8px;max-width:75ch}
+.notes{display:grid;gap:10px}
+
+/* guests */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:2px;min-width:0}
+.stat strong{font-family:var(--f-display);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat small{color:var(--muted);font-size:12.5px}
+.capbar{position:relative;height:12px;border-radius:6px;background:var(--surface-2);overflow:hidden}
+.capbar .p{position:absolute;left:0;top:0;bottom:0;background:var(--ok)}
+.capbar .u{position:absolute;top:0;bottom:0;background:var(--saffron);opacity:.55}
+.capbar .m{position:absolute;top:0;bottom:0;width:2px;background:var(--ink);opacity:.5}
+.live{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.live .stat{border-left:4px solid var(--line)}
+.live .stat.bad{border-left-color:var(--rojo)} .live .stat.fine{border-left-color:var(--ok)}
+
+form.add{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) 110px minmax(0,1fr) auto;gap:10px;align-items:end}
+form.add label{display:grid;gap:4px;font-size:12.5px;color:var(--muted);font-weight:600}
+.chk{display:flex!important;align-items:center;gap:8px;grid-auto-flow:column;font-size:14px!important;color:var(--ink)!important;padding-bottom:8px}
+.chk input{width:18px;height:18px;accent-color:var(--ok)}
+.btn{font:inherit;font-weight:700;border-radius:9px;border:1px solid transparent;padding:8px 14px;cursor:pointer;background:var(--cobalt);color:var(--surface);white-space:nowrap}
+.btn.ghost{background:transparent;border-color:var(--line);color:var(--ink)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:4px;background:var(--surface-2);padding:4px;border-radius:10px}
+.tabs button{font:inherit;font-size:13.5px;font-weight:600;border:0;background:transparent;color:var(--muted);padding:6px 12px;border-radius:7px;cursor:pointer}
+.tabs button[aria-pressed=true]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.08)}
+.toolbar input[type=search]{max-width:240px}
+ul.list{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.row{display:grid;grid-template-columns:34px minmax(0,1fr) auto auto auto;gap:12px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .n{color:var(--muted);font-size:13px;font-variant-numeric:tabular-nums}
+.row .who{min-width:0}
+.row .who b{display:block;overflow-wrap:anywhere}
+.row .who span{color:var(--muted);font-size:13px;overflow-wrap:anywhere}
+.row .amt{font-variant-numeric:tabular-nums;font-weight:600;font-size:14px}
+.pay{font:inherit;font-size:13px;font-weight:700;border-radius:999px;padding:6px 12px;cursor:pointer;border:1.5px solid var(--rojo);color:var(--rojo);background:transparent;min-width:122px}
+.pay[aria-pressed=true]{background:var(--ok);border-color:var(--ok);color:var(--surface)}
+.pay:disabled{cursor:default;opacity:.85}
+.del{font:inherit;font-size:12.5px;border:0;background:transparent;color:var(--muted);cursor:pointer;padding:6px 4px}
+.del.confirm{color:var(--rojo);font-weight:700}
+.empty{padding:28px 18px;text-align:center;color:var(--muted);background:var(--surface);border:1px dashed var(--line);border-radius:12px}
+.dbnote{font-size:13px;color:var(--muted);padding:10px 14px;border-radius:10px;background:var(--surface-2)}
+.dbnote.warn{background:var(--saffron-soft);color:var(--ink)}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-weight:600;font-size:14px;z-index:20;max-width:calc(100% - 32px)}
+textarea.copybox{width:100%;min-height:120px;font-size:13px}
+
+@media (max-width:860px){
+  .grid2{grid-template-columns:minmax(0,1fr)}
+  .verdict{grid-template-columns:minmax(0,1fr)}
+  .v{border-right:0;border-bottom:1px solid var(--line)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .live{grid-template-columns:minmax(0,1fr)}
+  form.add{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  form.add .wide{grid-column:1/-1}
+}
+@media (max-width:520px){
+  .row{grid-template-columns:minmax(0,1fr) auto;row-gap:6px}
+  .row .n{display:none}
+  .row .amt{grid-column:1}
+  .row .pay{grid-column:2;grid-row:1}
+  .row .del{grid-column:2;grid-row:2;justify-self:end}
+  .field{grid-template-columns:minmax(0,1fr) 100px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <div class="flag" aria-hidden="true"></div>
+    <span class="eyebrow">Alay Pro Runner · новогодний корпоратив «Испания»</span>
+    <h1>Фиеста: бюджет и список гостей</h1>
+    <div class="chips">
+      <span class="chip">25.12.26 · пятница · 18:00</span>
+      <span class="chip">«Ухо и Медведь», Курмангазы 107</span>
+      <span class="chip">Взнос <span id="chipPrice">25 000</span> ₸</span>
+      <span class="chip">Оплата до 1 декабря</span>
+    </div>
+    <p class="lede">Прогноз считает, сколько резидентов реально оплатит, и во что это выльется при депозите заведения и доп. расходах. Все цифры ниже можно менять: они сохраняются в этом браузере. Алкоголь в бюджет не входит: по решению чата каждый берёт или заказывает сам.</p>
+  </header>
+
+  <section id="forecast" aria-labelledby="h-forecast">
+    <div class="sec-head">
+      <span class="eyebrow">Часть 1</span>
+      <h2 id="h-forecast">Уйдём ли в минус</h2>
+    </div>
+
+    <div class="verdict" id="verdict"></div>
+
+    <div class="grid2">
+      <form class="panel" id="params" autocomplete="off" onsubmit="return false">
+        <fieldset>
+          <legend><h3>Заведение</h3></legend>
+          <div class="seg" role="radiogroup" aria-label="Что такое 800 000">
+            <label><input type="radio" name="mode" id="mode-deposit" value="deposit" data-k="mode"><span>Депозит<br><small class="mut">засчитывается в меню</small></span></label>
+            <label><input type="radio" name="mode" id="mode-rent" value="rent" data-k="mode"><span>Аренда<br><small class="mut">меню оплачивается сверху</small></span></label>
+          </div>
+          <div class="field"><label for="p-deposit">Сумма заведению, ₸</label><input id="p-deposit" type="number" min="0" step="10000" data-k="deposit"></div>
+          <div class="field"><label for="p-perHead">Меню + безалкогольные напитки на человека, ₸<span class="hint">еда, вода, морс, чай</span></label><input id="p-perHead" type="number" min="0" step="500" data-k="perHead"></div>
+          <div class="field"><label for="p-service">Обслуживание, %<span class="hint">уточнить: входит или сверху</span></label><input id="p-service" type="number" min="0" max="30" step="1" data-k="service"></div>
+          <div class="field"><label for="p-capComfort">Вместимость комфортно</label><input id="p-capComfort" type="number" min="1" step="1" data-k="capComfort"></div>
+          <div class="field"><label for="p-capMax">Вместимость максимум</label><input id="p-capMax" type="number" min="1" step="1" data-k="capMax"></div>
+        </fieldset>
+        <hr class="divider">
+        <fieldset>
+          <legend><h3>Доп. расходы (не зависят от числа гостей)</h3></legend>
+          <div id="extras" class="notes"></div>
+          <div class="field"><span>Итого доп. расходов</span><strong class="num" id="extrasTotal" style="text-align:right"></strong></div>
+        </fieldset>
+        <hr class="divider">
+        <fieldset>
+          <legend><h3>Люди</h3></legend>
+          <div class="field"><label for="p-price">Взнос, ₸</label><input id="p-price" type="number" min="0" step="1000" data-k="price"></div>
+          <div class="field"><label for="p-audLow">Резидентов: нижняя оценка<span class="hint">активные</span></label><input id="p-audLow" type="number" min="1" step="5" data-k="audLow"></div>
+          <div class="field"><label for="p-audHigh">Резидентов: верхняя оценка<span class="hint">весь чат</span></label><input id="p-audHigh" type="number" min="1" step="5" data-k="audHigh"></div>
+          <div class="field"><label for="p-rPess">Оплатят, % · пессимистично</label><input id="p-rPess" type="number" min="0" max="100" step="1" data-k="rPess"></div>
+          <div class="field"><label for="p-rBase">Оплатят, % · базово</label><input id="p-rBase" type="number" min="0" max="100" step="1" data-k="rBase"></div>
+          <div class="field"><label for="p-rOpt">Оплатят, % · оптимистично</label><input id="p-rOpt" type="number" min="0" max="100" step="1" data-k="rOpt"></div>
+          <div class="field"><label for="p-plus">Придут с гостем (+1), %</label><input id="p-plus" type="number" min="0" max="100" step="1" data-k="plus"></div>
+        </fieldset>
+        <p class="save-state">Изменения сохраняются в этом браузере.</p>
+      </form>
+
+      <div class="panel">
+        <div class="whatif-top">
+          <h3>Результат в зависимости от числа оплативших</h3>
+        </div>
+        <div class="chart-wrap" id="chart"></div>
+        <div class="legend">
+          <span><i style="background:var(--cobalt)"></i>точка безубыточности</span>
+          <span><i style="background:var(--saffron)"></i>наиболее вероятно</span>
+          <span id="lgLive" hidden><i style="background:var(--ok)"></i>оплачено сейчас</span>
+        </div>
+        <hr class="divider">
+        <h3>Сценарии</h3>
+        <div class="tbl-wrap"><table id="scen"></table></div>
+        <hr class="divider">
+        <div class="whatif">
+          <div class="whatif-top">
+            <label for="p-whatIf"><h3>Если оплатят <span id="wiN" class="num"></span> чел.</h3></label>
+            <span class="mut num" id="wiPer"></span>
+          </div>
+          <input id="p-whatIf" type="range" min="5" max="80" step="1" data-k="whatIf">
+          <div class="rows" id="wiRows"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes">
+      <details open>
+        <summary>Откуда такие проценты явки</summary>
+        <ul>
+          <li><b>200 в чате не равно 200 гостей.</b> На платные клубные вечеринки обычно доходит 15–25% списка участников. В активном ядре доля выше, среди тех, кто просто читает чат, это единицы. Поэтому базовый сценарий — 20%.</li>
+          <li><b>25 декабря — пятница последней рабочей недели.</b> У многих в эти же дни корпоративы на работе и семейные планы. Это конкурирующая дата.</li>
+          <li><b>25 000 ₸ без алкоголя.</b> Для непьющих это честнее, но часть пьющих будет сравнивать взнос с «посидеть в баре самим» и откажется.</li>
+          <li><b>Дедлайн 1 декабря — за 3,5 недели.</b> Обычно к дедлайну платит половина или две трети от итогового числа, остальные тянут до последней недели или просят «скинуть на месте».</li>
+          <li><b>Примерно каждый десятый приводит +1.</b> Это отдельный параметр слева.</li>
+          <li><b>Оплатили, но не пришли (обычно 5–10%).</b> Бюджет это не портит: деньги остаются, а меню в рамках депозита и так оплачено.</li>
+        </ul>
+      </details>
+      <details>
+        <summary>Что уточнить у «Ухо и Медведь» до оплаты</summary>
+        <ul>
+          <li><b>800 000 — это депозит или аренда?</b> Если аренда и меню сверху, мероприятие не окупается даже при полном зале. Переключите «Аренда» в блоке «Заведение» и посмотрите на график.</li>
+          <li><b>Обслуживание 10–15%</b> входит в 800 000 или начисляется сверху? Это ±80 000 ₸.</li>
+          <li><b>Что входит в меню на человека</b> и сколько стоит дозаказ сверх депозита. Отдельно: сколько воды и морса на стол. В прошлый раз в конце закончилась вода.</li>
+          <li><b>Свой алкоголь:</b> можно ли приносить и есть ли пробковый сбор за бутылку. Гости должны знать это заранее.</li>
+          <li><b>Можно ли снизить депозит</b>, если к 1 декабря наберётся меньше людей, и до какой даты можно отменить без потерь.</li>
+          <li><b>Предоплата:</b> сколько вносить сейчас и что вернут при отмене.</li>
+        </ul>
+      </details>
+      <details open>
+        <summary>Как не уйти в минус</summary>
+        <ol id="advice"></ol>
+      </details>
+    </div>
+  </section>
+
+  <section id="live" aria-labelledby="h-live">
+    <div class="sec-head">
+      <span class="eyebrow">Часть 2</span>
+      <h2 id="h-live">Факт по регистрациям</h2>
+      <p class="lede">Цифры берутся из Google Таблицы с заявками. Имена и телефоны смотрите в самой таблице: там же отмечается оплата галочкой.</p>
+    </div>
+    <div class="dbnote" id="dbNote">Загружаем данные из таблицы…</div>
+    <div class="stats">
+      <div class="stat"><span class="eyebrow">Записались</span><strong id="sRec">—</strong><small id="sAll"></small></div>
+      <div class="stat"><span class="eyebrow">Оплатили</span><strong id="sPaid" class="pos">—</strong><small id="sPaidRec"></small></div>
+      <div class="stat"><span class="eyebrow">Собрано</span><strong id="sColl">—</strong><small id="sPend"></small></div>
+      <div class="stat"><span class="eyebrow">Зал</span><strong id="sCap">—</strong><small id="sCapNote"></small></div>
+    </div>
+    <div class="live">
+      <div class="stat" id="lvNow"><span class="eyebrow">Если придут только оплатившие</span><strong>—</strong><small></small></div>
+      <div class="stat" id="lvProj"><span class="eyebrow">Прогноз по списку</span><strong>—</strong><small></small></div>
+      <div class="stat" id="lvNeed"><span class="eyebrow">До безубыточности</span><strong>—</strong><small></small></div>
+    </div>
+    <div class="field" style="max-width:520px"><label for="p-unpaidConv">Сколько из неоплативших в итоге заплатят, %<span class="hint">для прогноза по списку</span></label><input id="p-unpaidConv" type="number" min="0" max="100" step="5" data-k="unpaidConv"></div>
+    <button class="btn ghost" type="button" id="refresh" style="justify-self:start">Обновить данные</button>
+  </section>
+</div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+const DEF={price:25000,deposit:800000,mode:"deposit",perHead:16000,service:10,
+  extras:[{label:"Баннер",v:25000},{label:"Атрибутика и реквизит для конкурсов",v:40000},{label:"Подарки и призы",v:100000},{label:"Декор зала",v:30000},{label:"Ведущий / DJ",v:0},{label:"Резерв на непредвиденное",v:30000}],
+  audLow:130,audHigh:200,rPess:15,rBase:20,rOpt:27,plus:10,unpaidConv:60,capComfort:45,capMax:60,whatIf:40};
+const LS="alayFiestaParams";
+const clone=o=>JSON.parse(JSON.stringify(o));
+function merge(d){const o=Object.assign(clone(DEF),d||{});if(!Array.isArray(o.extras)||!o.extras.length)o.extras=clone(DEF.extras);return o;}
+let P=clone(DEF);
+try{const s=localStorage.getItem(LS);if(s)P=merge(JSON.parse(s));}catch(e){}
+
+const $=s=>document.querySelector(s);
+const nf=new Intl.NumberFormat("ru-RU");
+const fmt=n=>nf.format(Math.round(n));
+const tg=n=>fmt(n)+" ₸";
+const sg=n=>(n>0?"+":n<0?"−":"")+fmt(Math.abs(n))+" ₸";
+const shortK=n=>{const a=Math.abs(n),s=n<0?"−":n>0?"+":"";if(a>=1e6)return s+(a/1e6).toFixed(2).replace(".",",")+" млн";return s+Math.round(a/1000)+" тыс";};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const cls=n=>n<0?"neg":n>0?"pos":"";
+
+const extrasSum=()=>P.extras.reduce((s,e)=>s+(+e.v||0),0);
+function calc(n){
+  const food=n*P.perHead, svc=(+P.service||0)/100;
+  const venue=P.mode==="rent"?P.deposit+food*(1+svc):Math.max(P.deposit,food)*(1+svc);
+  const extras=extrasSum(), rev=n*P.price;
+  return {n,food,venue,extras,cost:venue+extras,rev,res:rev-venue-extras};
+}
+function breakEven(){for(let n=1;n<=500;n++)if(calc(n).res>=0)return n;return null;}
+const heads=(aud,rate)=>Math.round(aud*rate/100*(1+P.plus/100));
+
+/* ---------- inputs ---------- */
+function renderExtras(){
+  const box=$("#extras");
+  box.innerHTML=P.extras.map((e,i)=>`<div class="field"><label for="ex-${i}">${esc(e.label)}</label><input id="ex-${i}" type="number" min="0" step="5000" data-ex="${i}" value="${+e.v||0}"></div>`).join("");
+  box.querySelectorAll("[data-ex]").forEach(el=>el.addEventListener("input",()=>{P.extras[+el.dataset.ex].v=parseFloat(el.value)||0;changed();}));
+}
+function fillInputs(){
+  document.querySelectorAll("[data-k]").forEach(el=>{
+    const k=el.dataset.k;
+    if(el.type==="radio"){el.checked=P[k]===el.value;return;}
+    if(document.activeElement!==el)el.value=P[k];
+  });
+  renderExtras();
+}
+document.querySelectorAll("[data-k]").forEach(el=>{
+  el.addEventListener("input",()=>{
+    const k=el.dataset.k;
+    if(el.type==="radio"){if(el.checked)P[k]=el.value;}
+    else P[k]=parseFloat(el.value)||0;
+    changed();
+  });
+});
+
+/* ---------- forecast ---------- */
+function niceStep(raw){const p=Math.pow(10,Math.floor(Math.log10(raw||1)));const m=raw/p;return(m<=1?1:m<=2?2:m<=5?5:10)*p;}
+function chart(be,likely,paidNow){
+  const W=680,H=320,L=64,R=16,T=26,B=40,n0=10,n1=70;
+  const pts=[];for(let n=n0;n<=n1;n++)pts.push([n,calc(n).res]);
+  let lo=Math.min(0,...pts.map(p=>p[1])),hi=Math.max(0,...pts.map(p=>p[1]));
+  const step=niceStep((hi-lo)/5||100000);lo=Math.floor(lo/step)*step;hi=Math.ceil(hi/step)*step;if(hi===lo)hi=lo+step;
+  const x=n=>L+(n-n0)/(n1-n0)*(W-L-R), y=v=>T+(hi-v)/(hi-lo)*(H-T-B);
+  const y0=y(0);
+  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Финансовый результат в зависимости от числа оплативших">`;
+  s+=`<defs><clipPath id="cpPos"><rect x="0" y="0" width="${W}" height="${y0}"/></clipPath><clipPath id="cpNeg"><rect x="0" y="${y0}" width="${W}" height="${H-y0}"/></clipPath></defs>`;
+  const c1=Math.max(n0,Math.min(n1,P.capComfort)),c2=Math.max(n0,Math.min(n1,P.capMax));
+  if(c2>c1)s+=`<rect class="zone1" x="${x(c1)}" y="${T}" width="${x(c2)-x(c1)}" height="${H-T-B}"/>`;
+  if(n1>c2)s+=`<rect class="zone2" x="${x(c2)}" y="${T}" width="${x(n1)-x(c2)}" height="${H-T-B}"/>`;
+  for(let v=lo;v<=hi+1;v+=step){s+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end">${v===0?"0":shortK(v)}</text>`;}
+  for(let n=n0;n<=n1;n+=10)s+=`<text x="${x(n)}" y="${H-B+18}" text-anchor="middle">${n}</text>`;
+  s+=`<text x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">оплативших, чел.</text>`;
+  const line=pts.map((p,i)=>(i?"L":"M")+x(p[0]).toFixed(1)+" "+y(p[1]).toFixed(1)).join(" ");
+  const area=line+` L${x(n1)} ${y0} L${x(n0)} ${y0} Z`;
+  s+=`<path class="a-pos" d="${area}" clip-path="url(#cpPos)"/><path class="a-neg" d="${area}" clip-path="url(#cpNeg)"/>`;
+  s+=`<line class="zero" x1="${L}" x2="${W-R}" y1="${y0}" y2="${y0}"/>`;
+  if(P.capComfort>=n0&&P.capComfort<=n1)s+=`<line class="cap" x1="${x(P.capComfort)}" x2="${x(P.capComfort)}" y1="${T}" y2="${H-B}"/><text x="${x(P.capComfort)+4}" y="${T-8}">${P.capComfort} комфортно</text>`;
+  if(P.capMax>=n0&&P.capMax<=n1)s+=`<line class="cap2" x1="${x(P.capMax)}" x2="${x(P.capMax)}" y1="${T}" y2="${H-B}"/><text x="${x(P.capMax)+4}" y="${T-8}">${P.capMax} макс.</text>`;
+  s+=`<path class="line" d="${line}"/>`;
+  const dot=(n,c,label,dy)=>{if(n==null||n<n0||n>n1)return"";const yy=y(calc(n).res);const anchor=n>n1-12?"end":"start";const dx=anchor==="end"?-10:10;return`<circle class="${c}" cx="${x(n)}" cy="${yy}" r="6"/><text class="lbl" x="${x(n)+dx}" y="${yy+dy}" text-anchor="${anchor}">${label}</text>`;};
+  s+=dot(likely,"likely",`≈${likely} чел.: ${shortK(calc(likely).res)}`,18);
+  if(paidNow>0)s+=dot(paidNow,"live",`сейчас ${paidNow}`,-12);
+  s+=dot(be,"be",`${be} чел. = 0`,-12);
+  return s+"</svg>";
+}
+function renderForecast(){
+  $("#chipPrice").textContent=fmt(P.price);
+  $("#extrasTotal").textContent=tg(extrasSum());
+  const be=breakEven(), mid=Math.round((P.audLow+P.audHigh)/2);
+  const capd=n=>Math.min(n,P.capMax);
+  const likely=capd(heads(mid,P.rBase)), lr=calc(likely).res;
+  const bLo=capd(heads(P.audLow,P.rBase)), bHi=capd(heads(P.audHigh,P.rBase));
+  const rLo=calc(bLo).res, rHi=calc(bHi).res;
+  let note;
+  if(be==null||be>P.capMax)note=`<span class="neg">При текущих условиях праздник не окупается даже при полном зале (${P.capMax} чел.). Нужно менять условия с заведением или расходы.</span>`;
+  else if(be>P.capComfort)note=`<span class="neg">Окупается, только если набить зал больше комфортных ${P.capComfort} человек.</span> Нужно ${be} оплат.`;
+  else note=`Нужно ${be} оплат: это ${Math.round(be/P.audLow*100)}% от ${P.audLow} активных резидентов или ${Math.round(be/P.audHigh*100)}% от ${P.audHigh} в чате.`;
+  $("#verdict").innerHTML=
+    `<div class="v"><span class="eyebrow">Безубыточность</span><span class="big num">${be==null?"—":be+" чел."}</span><small>оплат по ${fmt(P.price)} ₸ покрывают ${tg(be==null?calc(P.capMax).cost:calc(be).cost)} расходов</small></div>`+
+    `<div class="v"><span class="eyebrow">Наиболее вероятно</span><span class="big num">≈${likely} чел.</span><small>базовый сценарий (${P.rBase}% оплат) для ~${mid} резидентов</small></div>`+
+    `<div class="v ${lr<0?"alert":"good"}"><span class="eyebrow">Ожидаемый результат</span><span class="big num ${cls(lr)}">${shortK(lr)} ₸</span><small>базовый сценарий: от ${shortK(Math.min(rLo,rHi))} до ${shortK(Math.max(rLo,rHi))} ₸</small></div>`+
+    `<div class="verdict-note">${note}</div>`;
+  const st=stats();
+  $("#chart").innerHTML=chart(be,likely,st.paidH);
+  $("#lgLive").hidden=!(st.paidH>0);
+  const auds=[P.audLow,mid,P.audHigh];
+  const sc=[["Пессимистичный",P.rPess,""],["Базовый",P.rBase,"base"],["Оптимистичный",P.rOpt,""]];
+  let t=`<thead><tr><th>Сценарий</th>${auds.map((a,i)=>`<th>${a} резидентов${i===0?" (актив)":i===2?" (весь чат)":""}</th>`).join("")}</tr></thead><tbody>`;
+  sc.forEach(([name,r,c])=>{
+    t+=`<tr class="${c}"><td><b>${name}</b><span class="mut">${r}% оплатят</span></td>`;
+    auds.forEach(a=>{const h=heads(a,r),n=capd(h),res=calc(n).res;t+=`<td><b>${n} чел.</b><span class="${cls(res)}">${shortK(res)} ₸</span>${h>P.capMax?`<span class="capped">ещё ${h-P.capMax} не влезут</span>`:""}</td>`;});
+    t+="</tr>";
+  });
+  $("#scen").innerHTML=t+"</tbody>";
+  const w=calc(P.whatIf);
+  $("#wiN").textContent=P.whatIf;
+  $("#wiPer").textContent=`на человека: ${sg(w.res/Math.max(1,P.whatIf))}`;
+  const venueLbl=P.mode==="rent"?`Заведение: аренда ${fmt(P.deposit)} + меню ${fmt(w.food)} + обслуживание`:(w.food>P.deposit?`Заведение: меню сверх депозита (${P.whatIf} × ${fmt(P.perHead)}) + обслуживание`:`Заведение: депозит${P.service?" + обслуживание "+P.service+"%":""}`);
+  $("#wiRows").innerHTML=`<div><span>Взносы (${P.whatIf} × ${fmt(P.price)})</span><span>${tg(w.rev)}</span></div><div><span>${venueLbl}</span><span>−${tg(w.venue)}</span></div><div><span>Доп. расходы</span><span>−${tg(w.extras)}</span></div><div><span>Итог</span><span class="${cls(w.res)}">${sg(w.res)}</span></div>`;
+  const gate=be==null?null:Math.ceil(be*0.7);
+  const adv=[];
+  if(be!=null&&be<=P.capMax)adv.push(`<b>Порог «идём / пересогласуем» на 1 декабря: ${gate} оплат.</b> К дедлайну обычно платит около двух третей итогового числа. Если оплат меньше, просите заведение снизить депозит или перенести часть суммы на дозаказ.`);
+  else adv.push(`<b>Сначала договоритесь с заведением.</b> При текущих условиях праздник не окупается, никакой набор гостей это не исправит.`);
+  adv.push(`<b>Довести оплаты до ${be??"—"}.</b> Пишите лично активным резидентам: общий пост в чате работает хуже. Кнопка «Скопировать неоплативших» в части 2 даёт готовый список.`);
+  adv.push(`<b>Призы и подарки через партнёров клуба:</b> беговые бренды, спортпит, массаж, фото. Это до ${tg(P.extras.find(e=>/Подарки/.test(e.label))?.v||0)} экономии.`);
+  adv.push(`<b>Поздняя цена.</b> Например, 30 000 ₸ после 1 декабря. Подталкивает платить вовремя и покрывает риск.`);
+  adv.push(`<b>Заранее решить, кто закрывает дефицит:</b> организаторы, клубная касса или спонсор. Тогда не придётся делить минус после праздника.`);
+  adv.push(`<b>Вход только по списку оплативших.</b> Иначе приходят «скину на месте», а платят не все.`);
+  $("#advice").innerHTML=adv.map(a=>`<li>${a}</li>`).join("");
+}
+
+/* ---------- live stats from Google Sheet ---------- */
+let S=null;
+function stats(){return S?{rec:S.records,all:S.heads,paidH:S.paidHeads,unpaidH:S.heads-S.paidHeads,paidRec:S.paidRecords}:{rec:0,all:0,paidH:0,unpaidH:0,paidRec:0};}
+function renderGuests(){
+  if(!S)return;
+  const st=stats(), be=breakEven();
+  $("#sRec").textContent=st.rec;
+  $("#sAll").textContent=`${st.all} человек с гостями`;
+  $("#sPaid").textContent=st.paidH;
+  $("#sPaidRec").textContent=`${st.paidRec} из ${st.rec} заявок`;
+  $("#sColl").textContent=tg(st.paidH*P.price);
+  $("#sPend").textContent=`ждём ещё ${tg(st.unpaidH*P.price)}`;
+  $("#sCap").textContent=`${st.all} / ${P.capComfort}`;
+  $("#sCapNote").textContent=st.all>P.capMax?`больше максимума (${P.capMax})!`:st.all>P.capComfort?`уже тесно, максимум ${P.capMax}`:`комфортно до ${P.capComfort}`;
+  const now=calc(st.paidH).res, proj=st.paidH+Math.round(st.unpaidH*P.unpaidConv/100), pr=calc(Math.min(proj,P.capMax)).res;
+  const setLv=(id,val,big,small)=>{const el=$(id);el.className="stat "+(val<0?"bad":"fine");el.querySelector("strong").innerHTML=big;el.querySelector("small").textContent=small;};
+  setLv("#lvNow",now,`<span class="${cls(now)}">${sg(now)}</span>`,`${st.paidH} оплативших против всех расходов`);
+  setLv("#lvProj",pr,`<span class="${cls(pr)}">${sg(pr)}</span>`,`≈${proj} чел.: оплатившие + ${P.unpaidConv}% остальных`);
+  const need=be==null?null:Math.max(0,be-st.paidH);
+  setLv("#lvNeed",need?-1:1,need==null?"—":need===0?`<span class="pos">достигнута</span>`:`${need} оплат`,need==null?"не окупается при текущих условиях":need===0?"дальше каждый взнос в плюс":`ещё ${tg(need*P.price)} взносов`);
+}
+function renderAll(){renderForecast();renderGuests();}
+function changed(){try{localStorage.setItem(LS,JSON.stringify(P));}catch(e){}renderAll();}
+function load(){
+  const url=(window.FIESTA_CONFIG||{}).scriptUrl, note=$("#dbNote");
+  if(!url){note.className="dbnote warn";note.textContent="Таблица ещё не подключена: впишите адрес скрипта в config.js. Прогноз работает и без неё.";return;}
+  note.className="dbnote";note.textContent="Загружаем данные из таблицы…";
+  fetch(url).then(r=>r.json()).then(d=>{if(!d||!d.ok)throw 0;S=d;note.textContent="Обновлено: "+new Date(d.updated).toLocaleString("ru-RU",{timeZone:"Asia/Almaty"})+" (Алматы)";renderAll();})
+    .catch(()=>{note.className="dbnote warn";note.textContent="Не удалось получить данные из таблицы. Проверьте интернет и нажмите «Обновить данные».";});
+}
+$("#refresh").addEventListener("click",load);
+fillInputs();renderAll();load();
+})();
+</script>
+</body>
+</html>

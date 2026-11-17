@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ALAY Fiesta · 25 декабря</title>
+<meta name="description" content="Новогодний корпоратив ALAY Pro Runner в стиле Испании. 25 декабря, 18:00, «Ухо и Медведь», Курмангазы 107. Регистрация и оплата до 1 декабря.">
+<meta property="og:title" content="ALAY Fiesta — новогодний корпоратив «Испания»">
+<meta property="og:description" content="25.12.26 · 18:00 · «Ухо и Медведь», Курмангазы 107. Регистрируйтесь и оплачивайте до 1 декабря!">
+<meta name="theme-color" content="#cc2f1f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,3 30,29 2,29' fill='%23f2a516'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Marck+Script&family=Montserrat:wght@400;500;600;700;800;900&display=swap">
+<style>
+/* Одна колонка-афиша до 720px. Сознательно одна светлая тема, как у бумажной афиши. */
+:root{
+  --paper:#ffffff; --ink:#1b2340; --muted:#5b6380; --line:#e6e8f0;
+  --rojo:#cc2f1f; --rojo-deep:#a3200f; --rojo-soft:#fff4f2; --azafran:#f2a516; --azafran-soft:#fff3d9; --cobalto:#1d4cc0; --cobalto-soft:#eaf0fc; --ok:#16804a; --ok-soft:#e3f5ea;
+  --f-title:"Ruslan Display","Rockwell",Georgia,serif;
+  --f-script:"Marck Script","Segoe Script",cursive;
+  --f-body:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{overflow-x:clip;background:var(--paper);scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.55;overflow-x:hidden}
+[hidden]{display:none!important}
+.page{position:relative;max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 120px;display:grid;gap:44px}
+p{margin:0}
+h2{font-family:var(--f-body);font-weight:900;font-size:clamp(20px,4.6vw,26px);text-transform:uppercase;letter-spacing:.02em;color:var(--cobalto);margin:0;text-wrap:balance}
+.tri{position:absolute;pointer-events:none}
+
+.hero{position:relative;text-align:center;display:grid;gap:6px;padding-top:18px}
+.brand{font-weight:800;letter-spacing:.18em;font-size:12px;color:var(--cobalto);text-transform:uppercase}
+.brush{position:relative;margin:10px -8px 0;padding:34px 18px 40px}
+.brush svg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.brush h1{position:relative;z-index:1;margin:0;font-family:var(--f-title);font-weight:400;color:#fff;font-size:clamp(30px,8.4vw,58px);line-height:1.05;text-shadow:0 2px 0 rgba(90,10,0,.35);text-wrap:balance}
+.brush h1 .acc{font-family:var(--f-body);font-weight:900}
+.script{position:relative;z-index:2;margin:-26px auto 0;display:inline-block;justify-self:center;padding:2px 34px 8px;font-family:var(--f-script);font-size:clamp(34px,8vw,50px);color:#fff;background:var(--azafran);transform:rotate(-3deg);border-radius:4px 18px 6px 22px;box-shadow:0 3px 0 #d98c00}
+.when{display:flex;justify-content:center;align-items:center;gap:clamp(10px,3vw,22px);margin-top:26px;font-weight:900;color:var(--azafran);font-size:clamp(30px,8.6vw,56px);line-height:1;font-variant-numeric:tabular-nums}
+.when i{width:3px;height:.8em;background:var(--azafran);border-radius:2px}
+.where{display:grid;gap:2px;margin-top:20px}
+.where .lbl{color:var(--azafran);font-weight:500;font-size:18px}
+.where strong{color:var(--cobalto);font-weight:900;font-size:clamp(24px,6vw,34px);text-transform:uppercase;line-height:1.1}
+.where span{color:var(--cobalto);font-size:20px;font-weight:500}
+
+.cta{display:grid;gap:10px;justify-items:center;text-align:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-family:var(--f-body);font-weight:900;font-size:clamp(17px,4.4vw,20px);text-transform:uppercase;letter-spacing:.04em;color:#fff;background:var(--rojo);padding:18px 30px;border:0;border-radius:14px;box-shadow:0 5px 0 var(--rojo-deep);transition:transform .12s ease,box-shadow .12s ease;width:min(100%,440px);cursor:pointer}
+.btn:hover{transform:translateY(-2px);box-shadow:0 7px 0 var(--rojo-deep)}
+.btn:active{transform:translateY(3px);box-shadow:0 2px 0 var(--rojo-deep)}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--cobalto);outline-offset:3px}
+.social{color:var(--muted);font-size:14px;font-weight:600}
+.social b{color:var(--rojo)}
+
+/* live countdown */
+.count{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cd{border:2px solid var(--line);border-radius:16px;padding:14px 10px;display:grid;gap:6px;text-align:center;min-width:0}
+.cd .ttl{font-size:12.5px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.cd .t{display:flex;justify-content:center;gap:6px;font-variant-numeric:tabular-nums}
+.cd .u{display:grid;min-width:0}
+.cd .u b{font-size:clamp(22px,6vw,34px);font-weight:900;line-height:1}
+.cd .u small{font-size:11px;color:var(--muted);font-weight:600}
+.cd .sep{font-weight:900;font-size:clamp(20px,5vw,28px);line-height:1;opacity:.35}
+.cd .msg{font-weight:900;font-size:clamp(20px,5vw,26px)}
+.cd.pay{border-color:var(--rojo);background:var(--rojo-soft)}.cd.pay b,.cd.pay .msg{color:var(--rojo)}
+.cd.party b,.cd.party .msg{color:var(--cobalto)}
+
+.block{display:grid;gap:16px}
+.incl{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.incl li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start}
+.incl li::before{content:"";width:16px;height:14px;margin-top:5px;background:var(--azafran);clip-path:polygon(50% 0,100% 100%,0 100%)}
+.incl li.no::before{background:var(--muted);opacity:.5;clip-path:polygon(0 0,100% 0,50% 100%)}
+.incl b{font-weight:800}
+
+.payment{border:2px dashed var(--azafran);background:var(--azafran-soft);border-radius:18px;padding:18px;display:grid;gap:12px}
+.amount{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px}
+.amount b{font-size:clamp(30px,8vw,40px);font-weight:900;color:var(--rojo);font-variant-numeric:tabular-nums}
+.amount span{color:var(--muted);font-weight:600;font-size:14px}
+.phone{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.phone code{font-family:var(--f-body);font-weight:800;font-size:clamp(20px,5.4vw,24px);user-select:all;letter-spacing:.02em}
+.copy{font:inherit;font-weight:700;font-size:14px;border:2px solid var(--cobalto);color:var(--cobalto);background:#fff;border-radius:999px;padding:6px 14px;cursor:pointer}
+.copy.done{background:var(--cobalto);color:#fff}
+.payment small{color:var(--muted);font-size:14px}
+
+/* form */
+.form{border:2px solid var(--line);border-radius:22px;padding:22px 18px;display:grid;gap:22px;background:#fff;box-shadow:0 10px 30px rgba(29,76,192,.07)}
+.form .head{display:grid;gap:6px}
+.form .head p{color:var(--muted);font-size:15px}
+.f{display:grid;gap:8px;border:0;margin:0;padding:0;min-width:0}
+.f > label,.f legend{font-weight:800;font-size:15px;padding:0}
+.f .hint{font-size:13px;color:var(--muted);font-weight:500}
+.req{color:var(--rojo)}
+input[type=text],input[type=tel],select,textarea{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:2px solid var(--line);border-radius:12px;padding:12px 14px;width:100%;min-width:0}
+input:focus,select:focus,textarea:focus{border-color:var(--cobalto);outline:none}
+textarea{min-height:90px;resize:vertical}
+.opts{display:grid;gap:8px}
+.opts.row{grid-template-columns:repeat(3,minmax(0,1fr))}
+.opt{position:relative;display:flex;align-items:center;gap:10px;border:2px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-weight:600;font-size:15px;background:#fff;min-width:0}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt .dot{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center}
+.opt.cb .dot{border-radius:6px}
+.opt:has(input:checked){border-color:var(--cobalto);background:var(--cobalto-soft)}
+.opt:has(input:checked) .dot{border-color:var(--cobalto);background:var(--cobalto)}
+.opt:has(input:checked) .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.opt.cb:has(input:checked) .dot::after{width:10px;height:6px;border-radius:0;background:none;border-left:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.opt:has(input:focus-visible){outline:3px solid var(--cobalto);outline-offset:2px}
+.looks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.look{position:relative;display:grid;gap:4px;border-radius:16px;padding:14px;cursor:pointer;color:#fff;border:3px solid transparent;min-width:0}
+.look input{position:absolute;opacity:0;width:1px;height:1px}
+.look strong{font-family:var(--f-title);font-weight:400;font-size:20px;line-height:1.1}
+.look span{font-size:13px;line-height:1.35;opacity:.95}
+.look.flamenco{background:var(--rojo)}.look.matador{background:var(--cobalto)}.look.ibiza{background:var(--azafran);color:#3a2300}.look.think{background:#f1f2f7;color:var(--ink)}
+.look:has(input:checked){border-color:var(--ink);box-shadow:0 0 0 3px #fff inset}
+.look:has(input:checked)::after{content:"✓";position:absolute;top:8px;right:12px;font-weight:900;font-size:18px}
+.look:has(input:focus-visible){outline:3px solid var(--cobalto);outline-offset:2px}
+.file{border:2px dashed var(--line);border-radius:12px;padding:14px;display:grid;gap:6px;font-size:14px}
+.file input{font-size:14px;max-width:100%}
+.sub{border-left:3px solid var(--azafran);padding-left:14px;display:grid;gap:14px}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;font-weight:600;cursor:pointer}
+.consent input{width:22px;height:22px;flex:none;accent-color:var(--rojo);margin-top:1px}
+.error{color:var(--rojo);font-weight:700;font-size:14.5px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-weight:800;padding:12px 14px;border-radius:12px;background:var(--azafran-soft)}
+.total b{white-space:nowrap;color:var(--rojo);font-size:22px;font-variant-numeric:tabular-nums}
+
+.done{border:2px solid var(--ok);background:var(--ok-soft);border-radius:22px;padding:24px 18px;display:grid;gap:14px;text-align:center}
+.done .big{font-family:var(--f-title);font-size:clamp(30px,8vw,44px);color:var(--ok);line-height:1.1}
+.done .payment{text-align:left}
+
+.foot{text-align:center;display:grid;gap:8px;justify-items:center;color:var(--muted);font-size:13px}
+.foot .logo{font-weight:900;font-size:26px;color:var(--cobalto);letter-spacing:.04em}
+.foot .logo em{font-style:normal;color:var(--azafran)}
+
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(255,255,255,.94);border-top:1px solid var(--line);display:flex;justify-content:center;backdrop-filter:blur(6px);transition:transform .2s ease}
+.sticky.off{transform:translateY(110%)}
+.sticky .btn{padding:14px 22px;box-shadow:0 3px 0 var(--rojo-deep)}
+
+@media (max-width:560px){
+  .opts.row{grid-template-columns:minmax(0,1fr)}
+  .looks{grid-template-columns:minmax(0,1fr)}
+  .count{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.sticky{transition:none}}
+</style>
+</head>
+<body>
+<div class="page">
+  <svg class="tri" style="left:4%;top:30px" width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><polygon points="2,2 32,2 17,28" fill="#f2a516"/></svg>
+  <svg class="tri" style="right:8%;top:16px" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><polygon points="15,2 28,24 2,24" fill="none" stroke="#1d4cc0" stroke-width="2.5"/></svg>
+  <svg class="tri" style="left:-4px;top:420px" width="40" height="36" viewBox="0 0 40 36" aria-hidden="true"><polygon points="20,3 37,33 3,33" fill="none" stroke="#f2a516" stroke-width="2.5"/></svg>
+  <svg class="tri" style="right:2%;top:470px" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><polygon points="2,2 28,2 15,24" fill="none" stroke="#1d4cc0" stroke-width="2.5"/></svg>
+
+  <header class="hero">
+    <span class="brand">ALAY Pro Runner приглашает</span>
+    <div class="brush">
+      <svg viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
+        <path fill="#cc2f1f" d="M14 38 C60 18 120 30 170 20 C240 8 300 26 360 14 C430 2 500 22 586 12 L592 40 C574 48 596 60 578 70 L596 98 C580 110 598 124 584 136 L594 168 C560 186 520 176 470 192 C400 212 330 196 260 206 C190 216 120 200 60 210 L10 204 C24 190 4 178 18 164 L6 132 C22 118 2 104 16 90 L4 60 Z"/>
+        <path fill="#a3200f" opacity=".35" d="M30 180 C120 168 220 190 330 176 C420 164 500 182 580 170 L584 190 C500 200 420 186 330 198 C220 210 120 192 34 202 Z"/>
+      </svg>
+      <h1>Новогодний корпоратив <span class="acc">ALAÝ</span></h1>
+    </div>
+    <span class="script">Испания</span>
+    <div class="when"><span>25.12.26</span><i aria-hidden="true"></i><span>18:00</span></div>
+    <div class="where">
+      <span class="lbl">локация:</span>
+      <strong>Ухо и Медведь</strong>
+      <span>Курмангазы 107</span>
+    </div>
+  </header>
+
+  <div class="cta" id="topCta">
+    <a class="btn" href="#register">Зарегистрироваться ¡Vamos!</a>
+    <span class="social" id="social" hidden></span>
+  </div>
+
+  <div class="count" aria-label="Обратный отсчёт по времени Алматы">
+    <div class="cd pay" id="cdPay"><span class="ttl">До конца оплаты</span><div class="t"></div></div>
+    <div class="cd party" id="cdParty"><span class="ttl">До начала фиесты</span><div class="t"></div></div>
+  </div>
+
+  <section class="block" aria-labelledby="h-incl">
+    <h2 id="h-incl">Что вас ждёт</h2>
+    <p>Страсть фламенко, дух корриды, безумные вечеринки Ибицы. Латино, сиеста и фиеста!</p>
+    <ul class="incl">
+      <li><span><b>Праздничный стол</b> и безалкогольные напитки на весь вечер</span></li>
+      <li><span><b>Новогодняя программа:</b> конкурсы, музыка, сюрпризы и подарки</span></li>
+      <li><span><b>Дресс-код:</b> ярко, смело, нарядно. От испанских красавиц и матадоров до пляжных тусовщиков Ибицы</span></li>
+      <li class="no"><span><b>Алкоголь не входит.</b> Так честнее для тех, кто не пьёт. Вино и коктейли можно заказать на месте за свой счёт.</span></li>
+    </ul>
+    <div class="payment">
+      <div class="amount"><b>25 000 ₸</b><span>с человека · оплата до 1 декабря</span></div>
+      <div class="phone"><code class="phoneNum">+7 701 707 15 05</code><button class="copy" type="button">Скопировать номер</button></div>
+      <small>Перевод по номеру: Меруерт М., Kaspi или Halyk. Регистрация подтверждается после оплаты.</small>
+    </div>
+  </section>
+
+  <section id="register" class="block" aria-labelledby="h-reg">
+    <form class="form" id="form" novalidate>
+      <div class="head">
+        <h2 id="h-reg">Регистрация</h2>
+        <p>Минута на заполнение. Поля со звёздочкой обязательные.</p>
+      </div>
+
+      <div class="f"><label for="name">Имя и фамилия <span class="req">*</span></label><input type="text" id="name" name="name" maxlength="80" autocomplete="name" required></div>
+      <div class="f"><label for="phone">Телефон / WhatsApp <span class="req">*</span></label><input type="tel" id="phone" name="phone" maxlength="30" autocomplete="tel" placeholder="+7 7__ ___ __ __" required></div>
+
+      <fieldset class="f">
+        <legend>Приду</legend>
+        <div class="opts row">
+          <label class="opt"><input type="radio" name="guests" value="0" checked><span class="dot"></span>Один(а)</label>
+          <label class="opt"><input type="radio" name="guests" value="1"><span class="dot"></span>+1 гость</label>
+          <label class="opt"><input type="radio" name="guests" value="2"><span class="dot"></span>+2 гостя</label>
+        </div>
+      </fieldset>
+      <div class="f sub" id="guestBox" hidden>
+        <label for="guestNames">Имена гостей <span class="req">*</span><span class="hint"> · взнос за каждого гостя тоже 25 000 ₸</span></label>
+        <input type="text" id="guestNames" name="guestNames" maxlength="200">
+      </div>
+
+      <fieldset class="f">
+        <legend>Ваш образ на фиесте</legend>
+        <div class="looks">
+          <label class="look flamenco"><input type="radio" name="look" value="Фламенко"><strong>Фламенко</strong><span>Красное, оборки, роза в волосах</span></label>
+          <label class="look matador"><input type="radio" name="look" value="Матадор"><strong>Матадор</strong><span>Жилет, шляпа, красная мулета</span></label>
+          <label class="look ibiza"><input type="radio" name="look" value="Ибица"><strong>Ибица</strong><span>Пляжный шик, яркие рубашки</span></label>
+          <label class="look think"><input type="radio" name="look" value="Ещё думаю" checked><strong>Ещё думаю</strong><span>Решу ближе к празднику</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="f">
+        <legend>Оплата</legend>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="payment" value="Уже оплатил(а)"><span class="dot"></span>Уже оплатил(а)</label>
+          <label class="opt"><input type="radio" name="payment" value="Оплачу до 1 декабря" checked><span class="dot"></span>Оплачу до 1 декабря</label>
+        </div>
+      </fieldset>
+      <div class="sub" id="paidBox" hidden>
+        <div class="f"><label for="payer">На чьё имя был перевод</label><input type="text" id="payer" name="payer" maxlength="80" placeholder="Если переводили не со своей карты"></div>
+        <div class="f">
+          <label for="receipt">Скриншот чека</label>
+          <div class="file"><input type="file" id="receipt" accept="image/*,application/pdf"><span class="hint">Фото или PDF. Необязательно, но так быстрее отметим оплату.</span></div>
+        </div>
+      </div>
+
+      <fieldset class="f">
+        <legend>Особенности питания</legend>
+        <div class="opts">
+          <label class="opt cb"><input type="checkbox" name="diet" value="Вегетарианец"><span class="dot"></span>Вегетарианец</label>
+          <label class="opt cb"><input type="checkbox" name="diet" value="Не ем свинину"><span class="dot"></span>Не ем свинину</label>
+          <label class="opt cb"><input type="checkbox" name="diet" value="Аллергия"><span class="dot"></span>Аллергия (напишу в комментарии)</label>
+        </div>
+      </fieldset>
+
+      <div class="f"><label for="comment">Комментарий или пожелания по программе</label><textarea id="comment" name="comment" maxlength="500"></textarea></div>
+      <div class="hp" aria-hidden="true"><label>Сайт<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+
+      <div class="total"><span id="totalLbl">К оплате за 1 человека</span><b id="total">25 000 ₸</b></div>
+
+      <label class="consent"><input type="checkbox" id="consent" required>Понимаю, что регистрация подтверждается только после оплаты до 1 декабря</label>
+
+      <p class="error" id="err" role="alert" hidden></p>
+      <button class="btn" type="submit" id="submit">Я в деле! ¡Vamos!</button>
+    </form>
+
+    <div class="done" id="done" hidden tabindex="-1">
+      <span class="big">¡Gracias!</span>
+      <p><b id="doneName">Вы</b> в списке. До встречи на фиесте 25 декабря в 18:00!</p>
+      <div class="payment" id="donePay">
+        <div class="amount"><b id="doneSum">25 000 ₸</b><span>переведите до 1 декабря</span></div>
+        <div class="phone"><code class="phoneNum">+7 701 707 15 05</code><button class="copy" type="button">Скопировать номер</button></div>
+        <small>Меруерт М., Kaspi или Halyk. Если чек не прикрепили, отправьте его организаторам.</small>
+      </div>
+      <button class="copy" type="button" id="again" style="justify-self:center">Зарегистрировать ещё одного человека</button>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span class="logo">ALA<em>Ý</em></span>
+    <span>PRO RUNNER · ALAY, готовьтесь! Эта фиеста будет незабываемой</span>
+  </footer>
+</div>
+
+<div class="sticky" id="sticky"><a class="btn" href="#register">Зарегистрироваться</a></div>
+
+<script src="config.js"></script>
+<script>
+(function(){
+  var CFG = window.FIESTA_CONFIG || {};
+  var PRICE = 25000;
+  // Время Алматы: UTC+5
+  var PAY_END = Date.parse("2026-12-01T23:59:59+05:00");
+  var PARTY = Date.parse("2026-12-25T18:00:00+05:00");
+  var PARTY_END = Date.parse("2026-12-26T02:00:00+05:00");
+  var $ = function(s){ return document.querySelector(s); };
+  var fmt = function(n){ return new Intl.NumberFormat("ru-RU").format(n); };
+  function plural(n,a,b,c){ n=Math.abs(n)%100; var m=n%10; if(n>10&&n<20)return c; if(m>1&&m<5)return b; if(m===1)return a; return c; }
+  function pad(n){ return (n<10?"0":"")+n; }
+
+  /* ---- живой отсчёт ---- */
+  function renderCd(el, target, doneHtml){
+    var box = el.querySelector(".t");
+    var ms = target - Date.now();
+    if (ms <= 0) { box.innerHTML = '<span class="msg">'+doneHtml+'</span>'; return; }
+    var s = Math.floor(ms/1000), d = Math.floor(s/86400), h = Math.floor(s%86400/3600), m = Math.floor(s%3600/60), sec = s%60;
+    var html = "";
+    if (d > 0) html += '<span class="u"><b>'+d+'</b><small>'+plural(d,"день","дня","дней")+'</small></span><span class="sep">:</span>';
+    html += '<span class="u"><b>'+pad(h)+'</b><small>час</small></span><span class="sep">:</span>'+
+            '<span class="u"><b>'+pad(m)+'</b><small>мин</small></span><span class="sep">:</span>'+
+            '<span class="u"><b>'+pad(sec)+'</b><small>сек</small></span>';
+    box.innerHTML = html;
+  }
+  function tick(){
+    renderCd($("#cdPay"), PAY_END, "Оплата закрыта");
+    var now = Date.now();
+    renderCd($("#cdParty"), PARTY, now < PARTY_END ? "Фиеста идёт! 💃" : "¡Olé! Спасибо всем");
+  }
+  tick(); setInterval(tick, 1000);
+  document.addEventListener("visibilitychange", function(){ if(!document.hidden) tick(); });
+
+  /* ---- копирование номера ---- */
+  document.querySelectorAll(".copy:not(#again)").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var code = btn.parentNode.querySelector(".phoneNum");
+      function ok(){ btn.textContent="Скопировано"; btn.classList.add("done"); setTimeout(function(){ btn.textContent="Скопировать номер"; btn.classList.remove("done"); },2000); }
+      function fail(){ var r=document.createRange(); r.selectNodeContents(code); var s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent="Номер выделен"; }
+      try { navigator.clipboard.writeText("+77017071505").then(ok, fail); } catch(e){ fail(); }
+    });
+  });
+
+  /* ---- сколько уже записались ---- */
+  if (CFG.scriptUrl) {
+    fetch(CFG.scriptUrl).then(function(r){ return r.json(); }).then(function(d){
+      if (d && d.ok && d.heads >= 10) { var el=$("#social"); el.innerHTML="Уже <b>"+d.heads+"</b> "+plural(d.heads,"человек","человека","человек")+" в деле"; el.hidden=false; }
+    }).catch(function(){});
+  }
+
+  /* ---- плавающая кнопка прячется у формы ---- */
+  var sticky = $("#sticky");
+  if ("IntersectionObserver" in window) {
+    var vis = {};
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ vis[e.target.id]=e.isIntersecting; }); sticky.classList.toggle("off", !!(vis.register||vis.topCta)); });
+    io.observe($("#register")); io.observe($("#topCta"));
+  }
+
+  /* ---- форма ---- */
+  var form = $("#form"), err = $("#err");
+  function val(name){ var el = form.querySelector('[name="'+name+'"]:checked'); return el ? el.value : ""; }
+  function sync(){
+    var g = parseInt(val("guests"),10)||0;
+    $("#guestBox").hidden = g === 0;
+    $("#paidBox").hidden = val("payment") !== "Уже оплатил(а)";
+    $("#totalLbl").textContent = "К оплате за "+(g+1)+" "+plural(g+1,"человека","человек","человек");
+    $("#total").textContent = fmt((g+1)*PRICE)+" ₸";
+  }
+  form.addEventListener("change", sync); sync();
+
+  function showErr(msg, el){ err.textContent = msg; err.hidden = false; if (el) el.focus(); }
+
+  function readReceipt(file){
+    return new Promise(function(resolve){
+      if (!file) return resolve(null);
+      if (file.type === "application/pdf") {
+        if (file.size > 2500000) return resolve({ tooBig:true });
+        var fr = new FileReader();
+        fr.onload = function(){ resolve({ type:"application/pdf", data:String(fr.result).split(",")[1] }); };
+        fr.onerror = function(){ resolve(null); };
+        return fr.readAsDataURL(file);
+      }
+      var img = new Image(), url = URL.createObjectURL(file);
+      img.onload = function(){
+        var k = Math.min(1, 1400/Math.max(img.width, img.height));
+        var c = document.createElement("canvas"); c.width = Math.round(img.width*k); c.height = Math.round(img.height*k);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        resolve({ type:"image/jpeg", data:c.toDataURL("image/jpeg", 0.8).split(",")[1] });
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); resolve(null); };
+      img.src = url;
+    });
+  }
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault(); err.hidden = true;
+    var name = $("#name").value.trim(), phone = $("#phone").value.trim();
+    var g = parseInt(val("guests"),10)||0;
+    if (!name) return showErr("Напишите имя и фамилию.", $("#name"));
+    if (phone.replace(/\D/g,"").length < 10) return showErr("Проверьте телефон: нужно минимум 10 цифр.", $("#phone"));
+    if (g > 0 && !$("#guestNames").value.trim()) return showErr("Напишите имена гостей.", $("#guestNames"));
+    if (!$("#consent").checked) return showErr("Отметьте галочку про оплату до 1 декабря.", $("#consent"));
+    if (!CFG.scriptUrl) return showErr("Регистрация ещё не подключена. Напишите организаторам в чат.");
+    var btn = $("#submit"); btn.disabled = true; btn.textContent = "Отправляем…";
+    var paid = val("payment") === "Уже оплатил(а)";
+    readReceipt(paid ? $("#receipt").files[0] : null).then(function(rc){
+      if (rc && rc.tooBig) { btn.disabled=false; btn.textContent="Я в деле! ¡Vamos!"; return showErr("PDF слишком большой. Приложите скриншот вместо файла."); }
+      var data = {
+        name: name, phone: phone, guests: g,
+        guestNames: g ? $("#guestNames").value.trim() : "",
+        look: val("look"), payment: val("payment"),
+        payer: paid ? $("#payer").value.trim() : "",
+        diet: Array.prototype.map.call(form.querySelectorAll('[name="diet"]:checked'), function(x){ return x.value; }).join(", "),
+        comment: $("#comment").value.trim(),
+        website: form.querySelector('[name="website"]').value,
+        receipt: rc
+      };
+      return fetch(CFG.scriptUrl, { method:"POST", body: JSON.stringify(data) })
+        .then(function(r){ return r.json(); })
+        .then(function(res){
+          if (!res || !res.ok) throw new Error(res && res.error || "fail");
+          $("#doneName").textContent = name;
+          $("#doneSum").textContent = fmt((g+1)*PRICE)+" ₸";
+          $("#donePay").hidden = paid;
+          form.hidden = true; $("#done").hidden = false; $("#done").focus();
+          $("#done").scrollIntoView({ block:"start" });
+        });
+    }).catch(function(){
+      showErr("Не получилось отправить. Проверьте интернет и попробуйте ещё раз. Если не выходит, напишите организаторам в чат.");
+    }).then(function(){ btn.disabled = false; btn.textContent = "Я в деле! ¡Vamos!"; });
+  });
+
+  $("#again").addEventListener("click", function(){
+    form.reset(); sync(); $("#done").hidden = true; form.hidden = false; $("#name").focus();
+  });
+})();
+</script>
+</body>
+</html>
