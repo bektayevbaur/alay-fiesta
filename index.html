@@ -31,6 +31,10 @@ p{margin:0}
 h2{font-family:var(--f-body);font-weight:900;font-size:clamp(20px,4.6vw,26px);text-transform:uppercase;letter-spacing:.02em;color:var(--cobalto);margin:0;text-wrap:balance}
 .tri{position:absolute;pointer-events:none}
 
+.lang{position:relative;z-index:5;justify-self:end;margin:-10px 0 4px;display:flex;gap:2px;padding:3px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-weight:800;font-size:12.5px;letter-spacing:.06em}
+.lang a{color:var(--muted);text-decoration:none;padding:5px 10px;border-radius:999px}
+.lang a[aria-current]{background:var(--cobalto);color:#fff}
+.lang a:not([aria-current]):hover{color:var(--cobalto)}
 .hero{position:relative;text-align:center;display:grid;gap:6px;padding-top:18px}
 .brand{font-weight:800;letter-spacing:.18em;font-size:12px;color:var(--cobalto);text-transform:uppercase}
 .brush{position:relative;margin:10px -8px 0;padding:34px 18px 40px}
@@ -148,11 +152,12 @@ textarea{min-height:90px;resize:vertical}
 <body>
 <div class="page">
   <svg class="tri" style="left:4%;top:30px" width="34" height="30" viewBox="0 0 34 30" aria-hidden="true"><polygon points="2,2 32,2 17,28" fill="#f2a516"/></svg>
-  <svg class="tri" style="right:8%;top:16px" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><polygon points="15,2 28,24 2,24" fill="none" stroke="#1d4cc0" stroke-width="2.5"/></svg>
+  <svg class="tri" style="right:30%;top:6px" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><polygon points="15,2 28,24 2,24" fill="none" stroke="#1d4cc0" stroke-width="2.5"/></svg>
   <svg class="tri" style="left:-4px;top:420px" width="40" height="36" viewBox="0 0 40 36" aria-hidden="true"><polygon points="20,3 37,33 3,33" fill="none" stroke="#f2a516" stroke-width="2.5"/></svg>
   <svg class="tri" style="right:2%;top:470px" width="30" height="26" viewBox="0 0 30 26" aria-hidden="true"><polygon points="2,2 28,2 15,24" fill="none" stroke="#1d4cc0" stroke-width="2.5"/></svg>
 
   <header class="hero">
+    <nav class="lang" aria-label="Тіл / Язык"><a href="kz/" hreflang="kk" lang="kk">ҚАЗ</a><a aria-current="page" lang="ru">РУС</a></nav>
     <span class="brand">ALAY Pro Runner приглашает</span>
     <div class="brush">
       <svg viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true">
