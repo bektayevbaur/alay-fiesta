@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>ALAY Fiesta · 25 декабря</title>
-<meta name="description" content="Новогодний корпоратив ALAY Pro Runner в стиле Испании. 25 декабря, 18:00, «Ухо и Медведь», Курмангазы 107. Регистрация и оплата до 1 декабря.">
+<meta name="description" content="Новогодний корпоратив ALAY Pro Runner в стиле Испании. 25 декабря, 18:00, «Ухо и Медведь», Курмангазы 107. Регистрация и оплата до 10 декабря.">
 <meta property="og:title" content="ALAY Fiesta — новогодний корпоратив «Испания»">
-<meta property="og:description" content="25.12.26 · 18:00 · «Ухо и Медведь», Курмангазы 107. Регистрируйтесь и оплачивайте до 1 декабря!">
+<meta property="og:description" content="25.12.26 · 18:00 · «Ухо и Медведь», Курмангазы 107. Регистрируйтесь и оплачивайте до 10 декабря!">
 <meta name="theme-color" content="#cc2f1f">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,3 30,29 2,29' fill='%23f2a516'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -190,7 +190,7 @@ textarea{min-height:90px;resize:vertical}
       <li class="no"><span><b>Алкоголь не входит.</b> Так честнее для тех, кто не пьёт. Вино и коктейли можно заказать на месте за свой счёт.</span></li>
     </ul>
     <div class="payment">
-      <div class="amount"><b>25 000 ₸</b><span>с человека · оплата до 1 декабря</span></div>
+      <div class="amount"><b>25 000 ₸</b><span>с человека · оплата до 10 декабря</span></div>
       <div class="phone"><code class="phoneNum">+7 701 707 15 05</code><button class="copy" type="button">Скопировать номер</button></div>
       <small>Перевод по номеру: Меруерт М., Kaspi или Halyk. Регистрация подтверждается после оплаты.</small>
     </div>
@@ -233,7 +233,7 @@ textarea{min-height:90px;resize:vertical}
         <legend>Оплата</legend>
         <div class="opts">
           <label class="opt"><input type="radio" name="payment" value="Уже оплатил(а)"><span class="dot"></span>Уже оплатил(а)</label>
-          <label class="opt"><input type="radio" name="payment" value="Оплачу до 1 декабря" checked><span class="dot"></span>Оплачу до 1 декабря</label>
+          <label class="opt"><input type="radio" name="payment" value="Оплачу до 10 декабря" checked><span class="dot"></span>Оплачу до 10 декабря</label>
         </div>
       </fieldset>
       <div class="sub" id="paidBox" hidden>
@@ -258,7 +258,7 @@ textarea{min-height:90px;resize:vertical}
 
       <div class="total"><span id="totalLbl">К оплате за 1 человека</span><b id="total">25 000 ₸</b></div>
 
-      <label class="consent"><input type="checkbox" id="consent" required>Понимаю, что регистрация подтверждается только после оплаты до 1 декабря</label>
+      <label class="consent"><input type="checkbox" id="consent" required>Понимаю, что регистрация подтверждается только после оплаты до 10 декабря</label>
 
       <p class="error" id="err" role="alert" hidden></p>
       <button class="btn" type="submit" id="submit">Я в деле! ¡Vamos!</button>
@@ -268,7 +268,7 @@ textarea{min-height:90px;resize:vertical}
       <span class="big">¡Gracias!</span>
       <p><b id="doneName">Вы</b> в списке. До встречи на фиесте 25 декабря в 18:00!</p>
       <div class="payment" id="donePay">
-        <div class="amount"><b id="doneSum">25 000 ₸</b><span>переведите до 1 декабря</span></div>
+        <div class="amount"><b id="doneSum">25 000 ₸</b><span>переведите до 10 декабря</span></div>
         <div class="phone"><code class="phoneNum">+7 701 707 15 05</code><button class="copy" type="button">Скопировать номер</button></div>
         <small>Меруерт М., Kaspi или Halyk. Если чек не прикрепили, отправьте его организаторам.</small>
       </div>
@@ -290,7 +290,7 @@ textarea{min-height:90px;resize:vertical}
   var CFG = window.FIESTA_CONFIG || {};
   var PRICE = 25000;
   // Время Алматы: UTC+5
-  var PAY_END = Date.parse("2026-12-01T23:59:59+05:00");
+  var PAY_END = Date.parse("2026-12-10T23:59:59+05:00");
   var PARTY = Date.parse("2026-12-25T18:00:00+05:00");
   var PARTY_END = Date.parse("2026-12-26T02:00:00+05:00");
   var $ = function(s){ return document.querySelector(s); };
@@ -388,7 +388,7 @@ textarea{min-height:90px;resize:vertical}
     if (!name) return showErr("Напишите имя и фамилию.", $("#name"));
     if (phone.replace(/\D/g,"").length < 10) return showErr("Проверьте телефон: нужно минимум 10 цифр.", $("#phone"));
     if (g > 0 && !$("#guestNames").value.trim()) return showErr("Напишите имена гостей.", $("#guestNames"));
-    if (!$("#consent").checked) return showErr("Отметьте галочку про оплату до 1 декабря.", $("#consent"));
+    if (!$("#consent").checked) return showErr("Отметьте галочку про оплату до 10 декабря.", $("#consent"));
     if (!CFG.scriptUrl) return showErr("Регистрация ещё не подключена. Напишите организаторам в чат.");
     var btn = $("#submit"); btn.disabled = true; btn.textContent = "Отправляем…";
     var paid = val("payment") === "Уже оплатил(а)";
